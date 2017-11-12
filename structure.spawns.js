@@ -1,29 +1,32 @@
+"use strict";
+
 module.exports = {
 	run: function(spawn) {
-
+        this.p = this.sp[spawn.name];
+        
 		let harvesters = spawn.room.find(FIND_MY_CREEPS, {filter: (creep) => creep.memory.role == "harvester"});
 		if(harvesters.length < this.p.harvesters) {
-		    if(!populate(spawn, "harvester")) console.log("Less than " + this.p.harvesters + " harvesters remaining...");
+		    if(!populate(spawn, "harvester")) console.log("Less than " + this.p.harvesters + " harvesters remaining... (" + harvesters.length + ")");
 		}
 
 		let couriers = spawn.room.find(FIND_MY_CREEPS, {filter: (creep) => creep.memory.role == "courier"});
 		if(couriers.length < this.p.couriers) {
-			if(!populate(spawn, "courier")) console.log("Less than " + this.p.couriers + " couriers remaining...");
+			if(!populate(spawn, "courier")) console.log("Less than " + this.p.couriers + " couriers remaining... (" + couriers.length + ")");
 		}
 
 		let upgraders = spawn.room.find(FIND_MY_CREEPS, {filter: (creep) => creep.memory.role == "upgrader"});
 		if(upgraders.length < this.p.upgraders) {
-			if(!populate(spawn, "upgrader")) console.log("Less than " + this.p.upgraders + " upgraders remaining...");
+			if(!populate(spawn, "upgrader")) console.log("Less than " + this.p.upgraders + " upgraders remaining... (" + upgraders.length + ")");
 		}
 
 		let builders = spawn.room.find(FIND_MY_CREEPS, {filter: (creep) => creep.memory.role == "builder"});
 		if(builders.length < this.p.builders) {
-			if(!populate(spawn, "builder")) console.log("Less than " + this.p.builders + " builders remaining...");
+			if(!populate(spawn, "builder")) console.log("Less than " + this.p.builders + " builders remaining... (" + builders.length + ")");
 		}
 
 		let protectors = spawn.room.find(FIND_MY_CREEPS, {filter: (creep) => creep.memory.role == "protector"});
 		if(protectors.length < this.p.protectors) {
-			if(!populate(spawn, "protector")) console.log("Less than " + this.p.protectors + " protectors remaining...");
+			if(!populate(spawn, "protector")) console.log("Less than " + this.p.protectors + " protectors remaining... (" + protectors.length + ")");
 		}
 	}
 }
@@ -34,7 +37,7 @@ function populate(spawn, role) {
 	switch(role.toLowerCase()) {
 		case "harvester":
 	    case "builder":
-			body = [WORK,WORK,WORK,CARRY,MOVE];
+			body = [WORK,WORK,CARRY,MOVE];
 			break;
 		case "courier":
 		    body = [CARRY,CARRY,MOVE,MOVE];
