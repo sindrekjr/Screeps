@@ -5,67 +5,39 @@ module.exports = {
         this.p = this.sp[spawn.name];
         
 		let harvesters = spawn.room.find(FIND_MY_CREEPS, {filter: (creep) => creep.memory.role == "harvester"});
-		if(harvesters.length < this.p.harvesters) {
-		    if(!populate(spawn, "harvester")) console.log("Less than " + this.p.harvesters + " harvesters remaining... (" + harvesters.length + ")");
+		if(harvesters.length < this.p.harvesters.amount) {
+		    if(!pop(spawn, this.p.harvesters.body, "harvester")) console.log("Less than " + this.p.harvesters.amount + " harvesters remaining... (" + harvesters.length + ")");
 		}
 
 		let couriers = spawn.room.find(FIND_MY_CREEPS, {filter: (creep) => creep.memory.role == "courier"});
-		if(couriers.length < this.p.couriers) {
-			if(!populate(spawn, "courier")) console.log("Less than " + this.p.couriers + " couriers remaining... (" + couriers.length + ")");
+		if(couriers.length < this.p.couriers.amount) {
+			if(!pop(spawn, this.p.couriers.body, "courier")) console.log("Less than " + this.p.couriers.amount + " couriers remaining... (" + couriers.length + ")");
 		}
 
 		let upgraders = spawn.room.find(FIND_MY_CREEPS, {filter: (creep) => creep.memory.role == "upgrader"});
-		if(upgraders.length < this.p.upgraders) {
-			if(!populate(spawn, "upgrader")) console.log("Less than " + this.p.upgraders + " upgraders remaining... (" + upgraders.length + ")");
+		if(upgraders.length < this.p.upgraders.amount) {
+			if(!pop(spawn, this.p.upgraders.body, "upgrader")) console.log("Less than " + this.p.upgraders.amount + " upgraders remaining... (" + upgraders.length + ")");
 		}
 
 		let builders = spawn.room.find(FIND_MY_CREEPS, {filter: (creep) => creep.memory.role == "builder"});
-		if(builders.length < this.p.builders) {
-			if(!populate(spawn, "builder")) console.log("Less than " + this.p.builders + " builders remaining... (" + builders.length + ")");
+		if(builders.length < this.p.builders.amount) {
+			if(!pop(spawn, this.p.builders.body, "builder")) console.log("Less than " + this.p.builders.amount + " builders remaining... (" + builders.length + ")");
 		}
 
 		let protectors = spawn.room.find(FIND_MY_CREEPS, {filter: (creep) => creep.memory.role == "protector"});
-		if(protectors.length < this.p.protectors) {
-			if(!populate(spawn, "protector")) console.log("Less than " + this.p.protectors + " protectors remaining... (" + protectors.length + ")");
+		if(protectors.length < this.p.protectors.amount) {
+			if(!pop(spawn, this.p.protectors.body, "protector")) console.log("Less than " + this.p.protectors.amount + " protectors remaining... (" + protectors.length + ")");
 		}
 	}
 }
 
-function populate(spawn, role) {
-    let body; 
-    
-	switch(role.toLowerCase()) {
-		case "harvester":
-	    case "builder":
-			body = [WORK,WORK,CARRY,MOVE];
-			break;
-		case "courier":
-		    body = [CARRY,CARRY,MOVE,MOVE];
-			break;
-		case "upgrader":
-		    body = [WORK,WORK,CARRY,CARRY,MOVE,MOVE];
-			break;
-		case "protector":
-		    body = [TOUGH,TOUGH,TOUGH,MOVE,ATTACK,MOVE,ATTACK,ATTACK,ATTACK,MOVE];
-			break;
-		default: 
-			
-	}
-	
-	try {
-	    return spawnCreep(spawn, body, role);
-	} catch(e) {
-	    console.log("Error: " + e);
-	    return false; 
-	}
 
-	function spawnCreep(spawn, body, r) {
-		if(spawn.canCreateCreep(body) == OK) {
-			spawn.createCreep(body, undefined, {role: r});
-			console.log("Spawning new " + role + " at " + spawn.name);
-			return true;
-		} else {
-			return false;
-		}
+function pop(spawn, body, r) {
+	if(spawn.canCreateCreep(body) == OK) {
+		spawn.createCreep(body, undefined, {role: r});
+		console.log("Spawning new " + r + " at " + spawn.name);
+		return true;
+	} else {
+		return false;
 	}
 }

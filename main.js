@@ -14,12 +14,12 @@ const spawn = require("structure.spawns"),
     
 const spawnProtocol = {
     "Spawn1": {
-        builders: 2, 
-        harvesters: 4, 
-        upgraders: 4, 
-        couriers: 1, 
-        protectors: 0,
-        conquerors: 0
+        builders: { amount: 3, body: [WORK,WORK,CARRY,MOVE] },
+        harvesters: { amount: 4, body: [WORK,WORK,CARRY,MOVE] },
+        upgraders: { amount: 4, body: [WORK,WORK,CARRY,CARRY,MOVE,MOVE] },
+        couriers: { amount: 1, body: [CARRY,CARRY,MOVE,MOVE] },
+        protectors: { amount: 0, body: [TOUGH,TOUGH,TOUGH,MOVE,ATTACK,MOVE,ATTACK,ATTACK,ATTACK,MOVE] },
+        conquerors: { amount: 0, body: [CLAIM,MOVE] }
     }
 };
 
