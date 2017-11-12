@@ -12,18 +12,18 @@ const spawn = require("structure.spawns"),
     controllers = require("structure.controllers"),
     towers = require("structure.towers");
     
-const protocol = {
-    //"Spawn1": {
-        builders: 3, 
+const spawnProtocol = {
+    "Spawn1": {
+        builders: 2, 
         harvesters: 4, 
-        upgraders: 6, 
+        upgraders: 4, 
         couriers: 1, 
         protectors: 0,
         conquerors: 0
-    //}
+    }
 };
 
-spawn.run = spawn.run.bind({p : protocol});
+spawn.run = spawn.run.bind({sp : spawnProtocol});
 
 module.exports.loop = function() {
     for(var id in Game.spawns) {
