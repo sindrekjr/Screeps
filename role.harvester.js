@@ -12,6 +12,7 @@ var role = {
                 filter: (structure) => {
                     return (((structure.structureType == STRUCTURE_CONTAINER) && (_.sum(structure.store) < structure.storeCapacity))
                     || ((structure.structureType == STRUCTURE_EXTENSION) && (structure.energy < structure.energyCapacity))
+                    || ((structure.structureType == STRUCTURE_SPAWN) && (structure.energy < structure.energyCapacity))
                     )
                 }
             });
