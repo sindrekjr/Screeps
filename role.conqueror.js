@@ -5,7 +5,7 @@ var role = {
             creep.claimController(creep.room.controller);
         } else {
             var exit = creep.pos.findClosestByPath(FIND_EXIT_LEFT);
-            creep.moveTo(exit[10]);
+            creep.moveTo(exit);
         }
     }
 }
