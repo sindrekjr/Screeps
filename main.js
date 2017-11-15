@@ -26,6 +26,19 @@ const spawnProtocol = {
 spawn.run = spawn.run.bind({sp : spawnProtocol});
 
 module.exports.loop = function() {
+    
+    for(var name in Game.rooms) {
+        console.log("Room '" + name + "' has " + Game.rooms[name].energyAvailable + " energy.");
+        /*for(var id in Game.rooms[name].spawns) {
+            spawn.run(Game.spawns[id]);
+        }*/
+        
+        //for(var id in Game.rooms[name].structures)
+        
+        //for(var s in r.spawns) spawn.run(s);
+        //controllers.run(r.controller);
+    }
+    
     for(var id in Game.spawns) {
         this.spawn = Game.spawns[id];
         spawn.run(this.spawn);
