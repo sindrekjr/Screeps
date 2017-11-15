@@ -14,12 +14,20 @@ const spawn = require("structure.spawns"),
     
 const spawnProtocol = {
     "Spawn1": {
-        builders: { amount: 3, body: [WORK,WORK,CARRY,MOVE] },
+        builders: { amount: 3, body: [WORK,WORK,WORK,CARRY,CARRY,MOVE] },
         harvesters: { amount: 4, body: [WORK,WORK,CARRY,MOVE] },
-        upgraders: { amount: 4, body: [WORK,WORK,CARRY,CARRY,MOVE,MOVE] },
-        couriers: { amount: 1, body: [CARRY,CARRY,MOVE,MOVE] },
+        upgraders: { amount: 6, body: [WORK,WORK,CARRY,CARRY,MOVE,MOVE] },
+        couriers: { amount: 2, body: [CARRY,CARRY,MOVE,MOVE] },
+        protectors: { amount: 1, body: [TOUGH,TOUGH,TOUGH,MOVE,ATTACK,MOVE,ATTACK,ATTACK,ATTACK,MOVE] },
+        conquerors: { amount: 0, body: [MOVE,CLAIM] }
+    },
+    "Spawn2": {
+        builders: { amount: 1, body: [WORK,CARRY,MOVE] },
+        harvesters: { amount: 2, body: [WORK,CARRY,MOVE] },
+        upgraders: { amount: 1, body: [WORK,CARRY,MOVE,MOVE] },
+        couriers: { amount: 0, body: [CARRY,CARRY,MOVE,MOVE] },
         protectors: { amount: 0, body: [TOUGH,TOUGH,TOUGH,MOVE,ATTACK,MOVE,ATTACK,ATTACK,ATTACK,MOVE] },
-        conquerors: { amount: 0, body: [CLAIM,MOVE] }
+        conquerors: { amount: 0, body: [MOVE,CLAIM] }
     }
 };
 
