@@ -65,6 +65,7 @@ module.exports.loop = function() {
         }
     }
     
+    let h = 0;
     for(var name in Game.creeps) {
         let creep = Game.creeps[name];
         
@@ -79,6 +80,9 @@ module.exports.loop = function() {
                 courier.run(creep);
                 break;
             case "harvester":
+                h++;
+                if((h % 2) === 0 || (creep.room.find(FIND_SOURCES).length === 1)) creep.memory.target = 0;
+                else creep.memory.target = 1;
                 harvester.run(creep);
                 break;
             case "protector":
